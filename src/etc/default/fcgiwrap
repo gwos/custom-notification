@@ -1,0 +1,9 @@
+# Defaults for fcgiwrap initscript
+# sourced by /etc/init.d/fcgiwrap
+
+# FCGI_APP Variables
+FCGI_USER="nginx"
+FCGI_GROUP="nginx"
+# Socket owner/group
+FCGI_SOCKET_OWNER="nginx"
+FCGI_SOCKET_GROUP="nginx"
