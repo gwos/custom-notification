@@ -1,0 +1,15 @@
+language: bash
+script:
+- export DOCKER_HUB_USERNAME=groundworkbot
+- make --warn-undefined-variables -f travis.Makefile all
+notifications:
+  slack:
+    rooms:
+      secure: lOqYDMfIAhRiv6DuNRVmOV3TuxM4I9GwyYJd4Ibp6L735wSrAKqKEO1ecx9VCy4tRGSsTjN8izi54ZKjD7gfJSVzX6whbNYZYthskZ0MPtsFX5KQzN1EM5iiOq0a578XgPiobNymel6PzQN2Z9qbgHK9pbDK/h/Iqh9vxkj15x9/9INk7LvZJ/VlP3v54DBwJzpLM+SzTEXsae6C+LeoqSB/Qz+I48YILZqa4mX8/4bdRtBXOwFNJlp8B/hglfqghz5tvL8EyG6Foc/PoFDvA1SMYS3ff+AXhrxwwAUkUQghjlUCu2/efwYa4ZsGp96819g2gOgBrALu9RX8SujhXCgCKak2Ok5PkM/6H3bhRl+hjWdOezJVmngyfWk0flTPk9Jh9BulqcemP6K75GxQ8qI5VpvgL11LayrgRL8y05q0DXrnvp5nexOVAaz5K9L32saBF/omLxQUUoxJkAUKFFA/DLt1TGz9x7KpzFQksaZOgQ3goeEkMmGqxUrmDDu3NKBj0A6lKe1JksURlmCgAUbyNQB1Fzy87sKHlqlFYtMsR0yaIOHKwIjjCMdIIWfySdP1hOIbBgXAd/W9vNmIbiPMRKEP774/tfcQohYvt9EpBIzdfgqoXYoOxOAuyuHz71BQy4DCinreIk+jJvqodIW+km0ujwvkW22T9o0Raq4=
+    on_pull_requests: true
+  webhooks:
+    on_success: always
+    on_failure: always
+    on_start: always
+    on_cancel: always
+    on_error: always
