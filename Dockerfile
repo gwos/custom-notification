@@ -22,3 +22,4 @@ RUN apt-get update -qq \
     && ln -sf /dev/stderr /var/log/custom_notification.log
 
 COPY ./src/ /
+CMD /docker_cmd.sh
