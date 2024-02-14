@@ -1,4 +1,8 @@
-ARG BASE_IMG=nginx:perl
+
+# ARG BASE_IMG=nginx:perl
+# using stable base to prevent apt-get issue
+# Note that following to `Docker best practice` and doing `rm -rf /var/lib/apt/lists/*` makes it impossible to use apt on nested images
+ARG BASE_IMG=nginx:stable-bullseye-perl
 
 FROM ${BASE_IMG}
 
@@ -8,6 +12,7 @@ RUN apt-get update -qq \
         fcgiwrap \
         liblwp-protocol-https-perl \
         vim \
+    && apt-get clean \
     && cpan \
         CGI \
         Data::Dumper \
@@ -22,4 +27,10 @@ RUN apt-get update -qq \
     && ln -sf /dev/stderr /var/log/custom_notification.log
 
 COPY ./src/ /
-CMD /docker_cmd.sh
+
+# wrap upstream entrypoint into custom
+# Note:  https://docs.docker.com/reference/dockerfile/#entrypoint
+# If CMD is defined from the base image, setting ENTRYPOINT will reset CMD to an empty value.
+# In this scenario, CMD must be defined in the current image to have a value.
+ENTRYPOINT ["/docker_cmd.sh", "/docker-entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

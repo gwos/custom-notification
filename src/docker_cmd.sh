@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -e
 
 # run custom entrypoint commands
